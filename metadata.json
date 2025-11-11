@@ -1,0 +1,5 @@
+{
+  "name": "Turnform2",
+  "description": "An application for gymnasts to track their skill repetitions to prevent overuse injuries and receive AI-powered coaching feedback on their form by analyzing uploaded videos and photos.",
+  "requestFramePermissions": []
+}
