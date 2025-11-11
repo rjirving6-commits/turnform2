@@ -79,6 +79,10 @@ export const analyzeVideoForForm = async (videoBase64: string, mimeType: string,
       }
     });
 
+    if (!response.text) {
+        throw new Error("No response text returned from API.");
+    }
+
     const parsedResponse = JSON.parse(response.text);
     return parsedResponse || { formCorrections: [], deductions: [], finalScoreRange: { min: 0, max: 0 } };
 };
@@ -117,6 +121,10 @@ export const analyzeImage = async (imageBase64: string, mimeType: string): Promi
           ]
       },
     });
+
+    if (!response.text) {
+        throw new Error("No response text returned from API.");
+    }
 
     return response.text;
 };
