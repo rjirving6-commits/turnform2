@@ -54,7 +54,7 @@ export const SavedVideos: React.FC = () => {
 
             {savedVideos.length === 0 ? (
                 <div className="text-center py-12 bg-gray-900/50 rounded-lg border border-dashed border-gray-700">
-                    <p className="text-gray-500">You haven't saved any videos yet.</p>
+                    <p className="text-gray-500">You haven&apos;t saved any videos yet.</p>
                     <button onClick={() => router.push('/dashboard/ai-coach')} className="mt-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg">
                         Analyze a Video
                     </button>

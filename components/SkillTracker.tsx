@@ -71,7 +71,7 @@ export const SkillTracker: React.FC<SkillTrackerProps> = ({ activeAthlete }) => 
                     onClick={() => setView('events')}
                     className="mt-4 px-8 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:scale-105 transition-transform"
                 >
-                    Start Today's Practice
+                    Start Today&apos;s Practice
                 </button>
             </div>
 
@@ -99,7 +99,7 @@ export const SkillTracker: React.FC<SkillTrackerProps> = ({ activeAthlete }) => 
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <StatCard title="Today's Turns" value={totalToday} />
+                <StatCard title="Today&apos;s Turns" value={totalToday} />
                 <StatCard title="This Week" value={totalWeekly} />
                 <StatCard title="This Month" value={totalMonthly} />
             </div>

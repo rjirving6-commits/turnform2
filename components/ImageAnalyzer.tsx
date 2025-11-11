@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useCallback } from 'react';
 import { analyzeImage } from '../services/geminiService';
 import { Spinner } from './Spinner';
@@ -88,6 +87,7 @@ export const ImageAnalyzer: React.FC = () => {
 
         {imagePreview && (
           <div className="mt-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={imagePreview} alt="Preview" className="w-full max-w-md mx-auto rounded-lg" />
           </div>
         )}

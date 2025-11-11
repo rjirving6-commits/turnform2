@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { analyzeImage } from '@/lib/gemini-server';
 
+// Use Node.js runtime for Gemini API compatibility
+export const runtime = 'nodejs';
+
 export async function POST(request: Request) {
   try {
     const { imageBase64, mimeType } = await request.json();

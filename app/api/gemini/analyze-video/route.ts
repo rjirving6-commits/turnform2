@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { analyzeVideoForForm } from '@/lib/gemini-server';
 
+// Use Node.js runtime for Gemini API compatibility
+export const runtime = 'nodejs';
+
 export async function POST(request: Request) {
   try {
     const { videoBase64, mimeType, prompt } = await request.json();

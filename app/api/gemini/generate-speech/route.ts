@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { generateSpeechFromText } from '@/lib/gemini-server';
 
+// Use Node.js runtime for Gemini API compatibility
+export const runtime = 'nodejs';
+
 export async function POST(request: Request) {
   try {
     const { text } = await request.json();

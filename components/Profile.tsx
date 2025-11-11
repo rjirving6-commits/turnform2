@@ -77,7 +77,7 @@ export const Profile: React.FC<ProfileProps> = ({
     return (
       <div className="text-center">
         <h2 className="text-3xl font-bold text-white mb-2">Welcome!</h2>
-        <p className="text-gray-400 mb-6">Let's create your first athlete profile to get started.</p>
+        <p className="text-gray-400 mb-6">Let&apos;s create your first athlete profile to get started.</p>
         <form onSubmit={handleAddNewAthlete} className="max-w-sm mx-auto space-y-4">
           <input
             type="text"
