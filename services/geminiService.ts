@@ -8,12 +8,28 @@ export const analyzeVideoForForm = async (videoBase64: string, mimeType: string,
         body: JSON.stringify({ videoBase64, mimeType, prompt }),
     });
     if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Failed to analyze video.');
+        // Handle 413 Payload Too Large specifically
+        if (response.status === 413) {
+            throw new Error('Video file is too large. Please use a video under 30MB or compress it before uploading.');
+        }
+        // Try to parse error message, but handle non-JSON responses
+        let errorMessage = 'Failed to analyze video.';
+        try {
+            const error = await response.json();
+            errorMessage = error.message || errorMessage;
+        } catch {
+            // If response is not JSON, use status text
+            errorMessage = response.statusText || errorMessage;
+        }
+        throw new Error(errorMessage);
     }
     return await response.json();
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error analyzing video:", error);
+    // Re-throw if it's already our formatted error
+    if (error.message && (error.message.includes('too large') || error.message.includes('413'))) {
+        throw error;
+    }
     throw new Error("Sorry, I encountered an error while analyzing the video. Please check the console and try again.");
   }
 };

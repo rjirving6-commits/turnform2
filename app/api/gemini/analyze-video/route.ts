@@ -3,6 +3,8 @@ import { analyzeVideoForForm } from '@/lib/gemini-server';
 
 // Use Node.js runtime for Gemini API compatibility
 export const runtime = 'nodejs';
+// Increase max duration for video processing (60 seconds)
+export const maxDuration = 60;
 
 export async function POST(request: Request) {
   try {

@@ -1,0 +1,29 @@
+{
+  "functions": {
+    "app/api/gemini/analyze-video/route.ts": {
+      "maxDuration": 60,
+      "memory": 3008
+    },
+    "app/api/gemini/analyze-image/route.ts": {
+      "maxDuration": 30,
+      "memory": 1024
+    },
+    "app/api/gemini/generate-speech/route.ts": {
+      "maxDuration": 30,
+      "memory": 1024
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
+  ]
+}
+
+

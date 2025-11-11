@@ -64,8 +64,10 @@ export const AIVideoCoach: React.FC = () => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      if (file.size > 100 * 1024 * 1024) { // 100MB limit
-        setError('File is too large. Please select a video under 100MB.');
+      // Limit to 30MB (base64 encoding increases size by ~33%, so this becomes ~40MB)
+      // Vercel Pro plan supports up to 50MB, but we'll be conservative
+      if (file.size > 30 * 1024 * 1024) {
+        setError('File is too large. Please select a video under 30MB. For larger videos, consider compressing them first.');
         return;
       }
       setError(null);
@@ -92,7 +94,12 @@ export const AIVideoCoach: React.FC = () => {
       setAnalysis(result);
     } catch (err: any) {
       console.error(err);
-      setError(err.message || 'Failed to analyze video. Please try again.');
+      // Handle 413 Payload Too Large error specifically
+      if (err.message?.includes('413') || err.message?.includes('Payload Too Large') || err.message?.includes('Request Entity Too Large')) {
+        setError('Video file is too large. Please use a video under 30MB or compress it before uploading.');
+      } else {
+        setError(err.message || 'Failed to analyze video. Please try again.');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -161,7 +168,7 @@ export const AIVideoCoach: React.FC = () => {
           />
           <UploadIcon className="w-10 h-10 text-gray-500 mb-2"/>
           <p className="text-gray-400">
-            {videoFile ? `Selected: ${videoFile.name}` : 'Click to upload video (Max 100MB)'}
+            {videoFile ? `Selected: ${videoFile.name}` : 'Click to upload video (Max 30MB)'}
           </p>
         </div>
 
